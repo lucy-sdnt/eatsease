@@ -15,16 +15,23 @@ return new class extends Migration
             $table->id();
             $table->boolean("status_or");
             $table->date("date_ord");
+            $table->decimal("total");
             $table->unsignedBigInteger("table_id");
             $table->unsignedBigInteger("staff_id");
             $table->unsignedBigInteger("payment_id");
             $table->timestamps();
             $table->foreign("table_id")
             ->references("id")
-            ->on("tables");
+            ->on("tables")->nullable();
+            $table->foreign("media_id")
+            ->references("id")
+            ->on("media")->nullable();
             $table->foreign("staff_id")
             ->references("id")
             ->on("staff");
+            $table->foreign("customer_id")
+            ->references("id")
+            ->on("customer");
             $table->foreign("payment_id")
             ->references("id")
             ->on("payment");

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias_inventario', function (Blueprint $table) {
-            $table->uuid('pk_categoria_inventario')->primary();
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->timestamps();
+        Schema::create('type_expenditure', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_type_expe', 50);
+            $table->smallInteger('status_type_expe');
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria_inventarios');
+        Schema::dropIfExists('type_expenditure');
     }
 };

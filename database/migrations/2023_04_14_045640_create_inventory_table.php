@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name_in");
             $table->integer("quantity_in");
-            $table->string("unit");
+            $table->date("expire_date");
+            $table->decimal("unity_price");
             $table->unsignedBigInteger("supplier_id");
             $table->timestamps();
             $table->foreign("supplier_id")
