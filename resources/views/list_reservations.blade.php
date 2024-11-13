@@ -7,6 +7,7 @@
     <title>Reservaciones</title>
     <link href="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" rel="icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -65,6 +66,15 @@
                height: 20px;
                fill: #fff;
            }
+           
+           .action-btns a {
+            font-size: 18px;
+            margin-right: 10px;
+            }
+
+        .action-btns a:hover {
+            text-decoration: none;
+            }
 
     </style>
 </head>
@@ -83,6 +93,7 @@
                 <th>Numero de cliente</th>
                 <th>Fecha de reservacion</th>
                 <th>Numero de mesa</th>
+                <th>Acciones</th>
             </tr>
             @foreach ($datos_reservations as $dato)
             <tr>
@@ -90,6 +101,14 @@
                 <td>{{$dato->customer_phone}}</td>
                 <td>{{$dato->reservation_date}}</td>
                 <td>{{$dato->table_number}}</td>
+                <td class="action-btns">
+                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta reservación?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
             </tr>
             @endforeach
         </table>
