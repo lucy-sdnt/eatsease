@@ -102,7 +102,7 @@
                 <td>{{$dato->reservation_date}}</td>
                 <td>{{$dato->table_number}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{ url('/edit_reservations/' . $dato->id) }}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
                     <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta reservación?')">

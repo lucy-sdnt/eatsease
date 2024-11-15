@@ -8,20 +8,59 @@ use App\Models\Suppliers;
 
 class Suppliers_controller extends Controller
 {
-    function insertar(Request $ru){
-        $suppliers=new Suppliers();
-        $suppliers->name_s= $ru->name_s;
-        $suppliers->contact= $ru->contact;
-        $suppliers->phone_su= $ru->phone_su;
-        $suppliers->email_su= $ru->email_su;
-        $suppliers->address= $ru->address;
+    public function insertar(Request $req)
+    {
+        $supplier = new Suppliers();
+        $supplier->name_s = $req->name_s;
+        $supplier->contact = $req->contact;
+        $supplier->phone_su = $req->phone_su;
+        $supplier->email_su = $req->email_su;
+        $supplier->address = $req->address;
 
-        $suppliers->save();
+        $supplier->save();
         return redirect()->route("suppliers.mostrar");
     }
 
-    function mostrar(){
-        $datos_suppliers=Suppliers::all();
+    public function mostrar()
+    {
+        $datos_suppliers = Suppliers::all();
         return view("list_suppliers", compact("datos_suppliers"));
+    }
+
+    public function edit($id)
+    {
+        $supplier = Suppliers::find($id);
+
+        if (!$supplier) {
+            return redirect()->route('suppliers.mostrar')->with('error', 'Proveedor no encontrado');
+        }
+
+        return view('edit_suppliers', compact('supplier'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name_s' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
+            'phone_su' => 'required|string|max:15',
+            'email_su' => 'required|email|max:255',
+            'address' => 'required|string|max:500',
+        ]);
+
+        $supplier = Suppliers::find($id);
+
+        if (!$supplier) {
+            return redirect()->route('suppliers.mostrar')->with('error', 'Proveedor no encontrado');
+        }
+
+        $supplier->name_s = $request->input('name_s');
+        $supplier->contact = $request->input('contact');
+        $supplier->phone_su = $request->input('phone_su');
+        $supplier->email_su = $request->input('email_su');
+        $supplier->address = $request->input('address');
+        $supplier->save();
+
+        return redirect()->route('suppliers.mostrar')->with('success', 'Proveedor actualizado exitosamente');
     }
 }

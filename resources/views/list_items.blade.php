@@ -102,10 +102,11 @@
                 <td>{{$dato->date_ord}}</td>
                 <td>{{$dato->name_m}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{url('/edit_items/' . $dato->id)}}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+
+                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este item?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

@@ -47,20 +47,11 @@ class Menu_controller extends Controller
     }
 
     public function destroy($id)
-{
-    // Buscar el producto por su ID
-    $menu = Menu::find($id);
+    {
+    $menu = Menu::findOrFail($id);
+    $menu->delete();
 
-    // Si el producto existe, lo eliminamos
-    if ($menu) {
-        $menu->delete();
-        return redirect()->route('menu.index')->with('success', 'Producto eliminado exitosamente');
+    return redirect()->route('/listadoMenu')->with('success', 'Elemento de menú eliminado exitosamente.');
     }
-
-    // Si no existe el producto, redirigimos con un error
-    return redirect()->route('menu.index')->with('error', 'Producto no encontrado');
-}
-
-
 
 }

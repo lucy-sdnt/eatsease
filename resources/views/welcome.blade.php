@@ -55,6 +55,33 @@
                 display: inline-block;
                 margin-right: 10px;
             }
+            .gradient-button {
+            background: linear-gradient(to right, #FF6B6B, #4ECDC4);
+            border: none;
+            border-radius: 25px;
+            color: black;
+            padding: 15px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            }
+
+            .gradient-button:hover {
+                transform: scale(1.05);
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+            }
+
         </style>
     </head>
     <body class="antialiased">

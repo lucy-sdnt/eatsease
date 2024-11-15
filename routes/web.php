@@ -71,12 +71,20 @@ Route::get('/formularioMesas', function () {
 
 Route::post("/registroCategorias",[Categories_controller::class,"insertar"])->name("categories.insertar");
 Route::get("/listadoCategorias",[Categories_controller::class,"mostrar"])->name("categories.mostrar");
+Route::get('/edit_categories/{id}', [Categories_controller::class, 'edit'])->name('categories.edit');
+Route::post('/update_categories/{id}', [Categories_controller::class, 'update'])->name('categories.update');
+
 
 Route::post("/registroInventario",[Inventory_controller::class,"insertar"])->name("inventory.insertar");
 Route::get("/listadoInventario",[Inventory_controller::class,"mostrar"])->name("inventory.mostrar");
+Route::get('/edit_inventory/{id}', [Inventory_controller::class, 'edit'])->name('inventory.edit');
+Route::post('/update_inventory/{id}', [Inventory_controller::class, 'update'])->name('inventory.update');
 
 Route::post("/registroProductos",[Items_controller::class,"insertar"])->name("items.insertar");
 Route::get("/listadoProductos",[Items_controller::class,"mostrar"])->name("items.mostrar");
+Route::get('/edit_items/{id}', [Items_controller::class, 'edit'])->name('items.edit');
+Route::post('/update_items/{id}', [Items_controller::class, 'update'])->name('items.update');
+
 
 Route::post("/registroMenu",[Menu_controller::class,"insertar"])->name("menu.insertar");
 Route::get("/listadoMenu",[Menu_controller::class,"mostrar"])->name("menu.mostrar");
@@ -84,24 +92,37 @@ Route::get('/delete/{id}', [Menu_controller::class, 'destroy'])->name('menu.dest
 Route::get('/edit/{id}', [Menu_controller::class, 'edit'])->name('menu.edit');
 Route::post('/update/{id}', [Menu_controller::class, 'update'])->name('menu.update');
 
-
 Route::post("/registroOrdenes",[Orders_controller::class,"insertar"])->name("orders.insertar");
-Route::get("/listadoOrdenes",[Orders_controller::class,"mostrar"])->name("orders.mostrar");
+Route::get("/listadoOrdenes",[Orders_controller::class,"mostrar"])->name("orders.mostrar"); 
+Route::get('/edit_orders/{id}', [Orders_controller::class, 'edit'])->name('orders.edit');
+Route::post('/update_orders/{id}', [Orders_controller::class, 'update'])->name('orders.update');
 
 Route::post("/registroPago",[Payment_controller::class,"insertar"])->name("payment.insertar");
 Route::get("/listadoPago",[Payment_controller::class,"mostrar"])->name("payment.mostrar");
+Route::get('/edit_payment/{id}', [Payment_controller::class, 'edit'])->name('payment.edit');
+Route::post('/update_payment/{id}', [Payment_controller::class, 'update'])->name('payment.update');
 
 Route::post("/registroReservaciones",[Reservations_controller::class,"insertar"])->name("reservations.insertar");
 Route::get("/listadoReservaciones",[Reservations_controller::class,"mostrar"])->name("reservations.mostrar");
+Route::get('/edit_reservations/{id}', [Reservations_controller::class, 'edit'])->name('edit_reservations');
+Route::post('/update_reservations/{id}', [Reservations_controller::class, 'update'])->name('update_reservations');
+
 
 Route::post("/registroEmpleados",[Staff_controller::class,"insertar"])->name("staff.insertar");
 Route::get("/listadoEmpleados",[Staff_controller::class,"mostrar"])->name("staff.mostrar");
+Route::get('/edit_staff/{id}', [Staff_controller::class, 'edit'])->name('staff.edit');
+Route::post('/update_staff/{id}', [Staff_controller::class, 'update'])->name('staff.update');
 
 Route::post("/registroProveedores",[Suppliers_controller::class,"insertar"])->name("suppliers.insertar");
 Route::get("/listadoProveedores",[Suppliers_controller::class,"mostrar"])->name("suppliers.mostrar");
+Route::get('/edit_suppliers/{id}', [Suppliers_controller::class, 'edit'])->name('suppliers.edit');
+Route::post('/update_suppliers/{id}', [Suppliers_controller::class, 'update'])->name('suppliers.update');
 
 Route::post("/registroMesas",[Tables_controller::class,"insertar"])->name("tables.insertar");
 Route::get("/listadoMesas",[Tables_controller::class,"mostrar"])->name("tables.mostrar");
+Route::get('/edit_tables/{id}', [Tables_controller::class, 'edit'])->name('edit_tables');
+Route::post('/update_tables/{id}', [Tables_controller::class, 'update'])->name('update_tables');
+
 //lista
 
 

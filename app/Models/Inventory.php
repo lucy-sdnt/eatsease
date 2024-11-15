@@ -10,4 +10,10 @@ class Inventory extends Model
     use HasFactory;
     protected $table="inventory";
     public $timestamps = false;
+    protected $fillable = [
+        'name_in',
+        'quantity_in',
+        'unit',
+        'supplier_id',
+    ];
 }

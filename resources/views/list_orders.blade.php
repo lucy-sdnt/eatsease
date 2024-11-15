@@ -93,10 +93,10 @@
                 <td>{{$dato->first_name}}</td>
                 <td>{{$dato->pay_type}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{url('/edit_orders/' . $dato->id)}}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta orden?')">
+                    <a href="/delete_orders/{{ $dato->id }}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta orden?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

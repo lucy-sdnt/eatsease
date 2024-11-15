@@ -125,10 +125,10 @@
                 <td>{{$dato->email_su}}</td>
                 <td>{{$dato->address}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{ url('/edit_suppliers/' . $dato->id) }}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este proveedor?')">
+                    <a href="{{ url('/delete_inventory/' . $dato->id) }}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

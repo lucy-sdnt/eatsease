@@ -106,7 +106,7 @@
                 <td>{{$dato->role}}</td>
                 <td>{{$dato->hired_at}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{ url('/edit_staff/' . $dato->id) }}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
                     <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este empleado?')">

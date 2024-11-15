@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Reservations;
+use App\Models\Tables;
 
 class Reservations_controller extends Controller
 {
@@ -22,8 +23,50 @@ class Reservations_controller extends Controller
         //return view("lista_nota");
         return redirect()->route("reservations.mostrar");
     }
-    function mostrar(){
-        $datos_reservations=Reservations::join("tables","reservations.table_id","=","tables.id")->get();
+    public function mostrar()
+    {
+        $datos_reservations = Reservations::join('tables', 'reservations.table_id', '=', 'tables.id')
+            ->select('reservations.*', 'tables.table_number')
+            ->get();
+
         return view("list_reservations", compact("datos_reservations"));
+    }
+
+    public function edit($id)
+    {
+        $reservation = Reservations::find($id);
+        $tables = Tables::all(); 
+
+        if (!$reservation) {
+            return redirect()->route('reservations.mostrar')->with('error', 'Reservación no encontrada');
+        }
+
+        return view('edit_reservations', compact('reservation', 'tables'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'customer_name' => 'required|string|max:255',
+            'customer_phone' => 'required|string|max:15',
+            'reservation_date' => 'required|date',
+            'status_re' => 'required|integer|in:0,1', // 0 = Pendiente, 1 = Confirmada
+            'table_id' => 'required|exists:tables,id',
+        ]);
+
+        $reservation = Reservations::find($id);
+
+        if (!$reservation) {
+            return redirect()->route('reservations.mostrar')->with('error', 'Reservación no encontrada');
+        }
+
+        $reservation->customer_name = $request->input('customer_name');
+        $reservation->customer_phone = $request->input('customer_phone');
+        $reservation->reservation_date = $request->input('reservation_date');
+        $reservation->status_re = $request->input('status_re');
+        $reservation->table_id = $request->input('table_id');
+        $reservation->save();
+
+        return redirect()->route('reservations.mostrar')->with('success', 'Reservación actualizada exitosamente');
     }
 }

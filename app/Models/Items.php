@@ -10,4 +10,10 @@ class Items extends Model
     use HasFactory;
     protected $table="items";
     public $timestamps = false;
+    protected $fillable = [
+        'quantity_it',           
+        'special_instructions',   
+        'order_id',               
+        'menu_id',              
+    ];
 }

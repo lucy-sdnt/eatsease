@@ -87,10 +87,10 @@
             <tr>
                 <td>{{$dato->name_c}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{ url('/edit_categories/' . $dato->id) }}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+                    <a href="/delete_categoires/' . {{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

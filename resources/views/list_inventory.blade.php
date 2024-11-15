@@ -93,7 +93,7 @@
                 <th>Cantidad</th>
                 <th>Unidad</th>
                 <th>Proveedor</th>
-                <th>Acciones</th> <!-- Columna para los iconos de editar y eliminar -->
+                <th>Acciones</th> 
             </tr>
             @foreach ($datos_inventory as $dato)
             <tr>
@@ -102,10 +102,10 @@
                 <td>{{$dato->unit}}</td>
                 <td>{{$dato->name_s}}</td>
                 <td class="action-btns">
-                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                    <a href="{{url('/edit_inventory/' . $dato->id)}}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
+                    <a href="/delete_inventory/{{ $dato->id }}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

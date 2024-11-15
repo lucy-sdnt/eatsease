@@ -10,4 +10,6 @@ class Payment extends Model
     use HasFactory;
     protected $table="payment";
     public $timestamps = false;
+
+    protected $fillable = ['pay_type', 'status_pa'];
 }

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Orders;
+use App\Models\Staff;
+use App\Models\Payment;
+use App\Models\Tables;
+
 
 class Orders_controller extends Controller
 {
@@ -23,7 +27,7 @@ class Orders_controller extends Controller
         return redirect()->route("orders.mostrar");
     }
     function mostrar(){
-        $datos_orders = Orders::select('orders.date_ord', 'tables.table_number', 'staff.first_name', 'payment.pay_type')
+        $datos_orders = Orders::select('orders.id', 'orders.date_ord', 'tables.table_number', 'staff.first_name', 'payment.pay_type')
             ->join('tables', 'orders.table_id', '=', 'tables.id')
             ->join('staff', 'orders.staff_id', '=', 'staff.id')
             ->join('payment', 'orders.payment_id', '=', 'payment.id')
@@ -32,4 +36,37 @@ class Orders_controller extends Controller
         return view('list_orders', compact('datos_orders'));
 
     }
+
+    public function edit($id)
+    {
+        $order = Orders::with('tables')->findOrFail($id); // Carga la relación con tables
+        $staff = Staff::all();
+        $paymentTypes = Payment::all();
+        $tables = Tables::all(); // Para mostrar las opciones de mesas en el formulario
+        return view('edit_orders', compact('order', 'staff', 'paymentTypes', 'tables'));
+    }
+    
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'date_ord' => 'required|date',
+            'table_id' => 'required|exists:tables,id', // Valida que exista en la tabla tables
+            'staff_id' => 'required|exists:staff,id', 
+            'payment_id' => 'required|exists:payment,id', 
+        ]);
+    
+        $order = Orders::findOrFail($id);
+        $order->update([
+            'date_ord' => $request->date_ord,
+            'table_id' => $request->table_id, // Guarda el ID de la mesa
+            'staff_id' => $request->staff_id,
+            'payment_id' => $request->payment_id,
+        ]);
+    
+        return redirect()->route('orders.mostrar')->with('success', 'Orden actualizada correctamente');
+    }
+    
+
 }

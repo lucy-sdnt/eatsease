@@ -18,11 +18,50 @@ class Staff_controller extends Controller
         $staff->hired_at= $rq->hired_at;
 
         $staff->save();
-        return redirect()->route("staff.mostrar");
+        return redirect()->route("staff.mostrar")->with('error', 'Empleado no encontrado');
     }
 
     function mostrar(){
         $datos_staff=Staff::all();
         return view("list_staff", compact("datos_staff"));
+    }
+
+    public function edit($id)
+    {
+        $staff = Staff::find($id);
+
+        if (!$staff) {
+            return redirect()->route('staff.mostrar')->with('error', 'Empleado no encontrado');
+        }
+
+        return view('edit_staff', compact('staff'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_st' => 'required|string|max:15',
+            'email_st' => 'required|email|max:255',
+            'role' => 'required|string|max:100',
+            'hired_at' => 'required|date',
+        ]);
+
+        $staff = Staff::find($id);
+
+        if (!$staff) {
+            return redirect()->route('staff.mostrar')->with('error', 'Empleado no encontrado');
+        }
+
+        $staff->first_name = $request->input('first_name');
+        $staff->last_name = $request->input('last_name');
+        $staff->phone_st = $request->input('phone_st');
+        $staff->email_st = $request->input('email_st');
+        $staff->role = $request->input('role');
+        $staff->hired_at = $request->input('hired_at');
+        $staff->save();
+
+        return redirect()->route('staff.mostrar')->with('success', 'Empleado actualizado exitosamente');
     }
 }
