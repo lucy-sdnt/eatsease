@@ -46,12 +46,18 @@ class Menu_controller extends Controller
         return redirect('/listadoMenu')->with('success', 'Menú actualizado con éxito.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-    $menu = Menu::findOrFail($id);
-    $menu->delete();
+        $menu = Menu::find($id);
 
-    return redirect()->route('/listadoMenu')->with('success', 'Elemento de menú eliminado exitosamente.');
+        if (!$menu) {
+            return redirect()->route('menu.mostrar')->with('error', 'Producto no encontrado');
+        }
+
+        $menu->status = 0;
+        $menu->save();
+
+        return redirect()->route('menu.mostrar')->with('success', 'Se elimino el producto del menu de manera exitosa');
     }
 
 }

@@ -73,17 +73,20 @@ Route::post("/registroCategorias",[Categories_controller::class,"insertar"])->na
 Route::get("/listadoCategorias",[Categories_controller::class,"mostrar"])->name("categories.mostrar");
 Route::get('/edit_categories/{id}', [Categories_controller::class, 'edit'])->name('categories.edit');
 Route::post('/update_categories/{id}', [Categories_controller::class, 'update'])->name('categories.update');
+Route::get('/delete_categories/{id}', [Categories_controller::class, 'delete'])->name('categories.delete');
 
 
 Route::post("/registroInventario",[Inventory_controller::class,"insertar"])->name("inventory.insertar");
 Route::get("/listadoInventario",[Inventory_controller::class,"mostrar"])->name("inventory.mostrar");
 Route::get('/edit_inventory/{id}', [Inventory_controller::class, 'edit'])->name('inventory.edit');
 Route::post('/update_inventory/{id}', [Inventory_controller::class, 'update'])->name('inventory.update');
+Route::get('/delete_inventory/{id}', [Inventory_controller::class, 'delete'])->name('inventory.delete');
 
 Route::post("/registroProductos",[Items_controller::class,"insertar"])->name("items.insertar");
 Route::get("/listadoProductos",[Items_controller::class,"mostrar"])->name("items.mostrar");
 Route::get('/edit_items/{id}', [Items_controller::class, 'edit'])->name('items.edit');
 Route::post('/update_items/{id}', [Items_controller::class, 'update'])->name('items.update');
+Route::get('/delete_items/{id}', [Items_controller::class, 'delete'])->name('items.delete');
 
 
 Route::post("/registroMenu",[Menu_controller::class,"insertar"])->name("menu.insertar");
@@ -91,37 +94,44 @@ Route::get("/listadoMenu",[Menu_controller::class,"mostrar"])->name("menu.mostra
 Route::get('/delete/{id}', [Menu_controller::class, 'destroy'])->name('menu.destroy');
 Route::get('/edit/{id}', [Menu_controller::class, 'edit'])->name('menu.edit');
 Route::post('/update/{id}', [Menu_controller::class, 'update'])->name('menu.update');
+Route::get('/delete/{id}', [Menu_controller::class, 'delete'])->name('menu.delete');
 
 Route::post("/registroOrdenes",[Orders_controller::class,"insertar"])->name("orders.insertar");
 Route::get("/listadoOrdenes",[Orders_controller::class,"mostrar"])->name("orders.mostrar"); 
 Route::get('/edit_orders/{id}', [Orders_controller::class, 'edit'])->name('orders.edit');
 Route::post('/update_orders/{id}', [Orders_controller::class, 'update'])->name('orders.update');
+Route::get('/delete_orders/{id}', [Orders_controller::class, 'delete'])->name('orders.delete');
 
 Route::post("/registroPago",[Payment_controller::class,"insertar"])->name("payment.insertar");
 Route::get("/listadoPago",[Payment_controller::class,"mostrar"])->name("payment.mostrar");
 Route::get('/edit_payment/{id}', [Payment_controller::class, 'edit'])->name('payment.edit');
 Route::post('/update_payment/{id}', [Payment_controller::class, 'update'])->name('payment.update');
+Route::get('/delete_payment/{id}', [Payment_controller::class, 'delete'])->name('payment.delete');
 
 Route::post("/registroReservaciones",[Reservations_controller::class,"insertar"])->name("reservations.insertar");
 Route::get("/listadoReservaciones",[Reservations_controller::class,"mostrar"])->name("reservations.mostrar");
 Route::get('/edit_reservations/{id}', [Reservations_controller::class, 'edit'])->name('edit_reservations');
 Route::post('/update_reservations/{id}', [Reservations_controller::class, 'update'])->name('update_reservations');
+Route::get('/delete_reservations/{id}', [Reservations_controller::class, 'delete'])->name('reservations.delete');
 
 
 Route::post("/registroEmpleados",[Staff_controller::class,"insertar"])->name("staff.insertar");
 Route::get("/listadoEmpleados",[Staff_controller::class,"mostrar"])->name("staff.mostrar");
 Route::get('/edit_staff/{id}', [Staff_controller::class, 'edit'])->name('staff.edit');
 Route::post('/update_staff/{id}', [Staff_controller::class, 'update'])->name('staff.update');
+Route::get('/delete_staff/{id}', [Staff_controller::class, 'delete'])->name('staff.delete');
 
 Route::post("/registroProveedores",[Suppliers_controller::class,"insertar"])->name("suppliers.insertar");
 Route::get("/listadoProveedores",[Suppliers_controller::class,"mostrar"])->name("suppliers.mostrar");
 Route::get('/edit_suppliers/{id}', [Suppliers_controller::class, 'edit'])->name('suppliers.edit');
 Route::post('/update_suppliers/{id}', [Suppliers_controller::class, 'update'])->name('suppliers.update');
+Route::get('/delete_suppliers/{id}', [Suppliers_controller::class, 'delete'])->name('suppliers.delete');
 
 Route::post("/registroMesas",[Tables_controller::class,"insertar"])->name("tables.insertar");
 Route::get("/listadoMesas",[Tables_controller::class,"mostrar"])->name("tables.mostrar");
 Route::get('/edit_tables/{id}', [Tables_controller::class, 'edit'])->name('edit_tables');
 Route::post('/update_tables/{id}', [Tables_controller::class, 'update'])->name('update_tables');
+Route::get('/delete_tables/{id}', [Tables_controller::class, 'delete'])->name('tables.delete');
 
 //lista
 

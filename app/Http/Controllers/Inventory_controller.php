@@ -55,4 +55,18 @@ class Inventory_controller extends Controller
         return redirect()->route('inventory.mostrar')->with('success', 'Producto actualizado correctamente');
     }
 
+    public function delete($id)
+    {
+        $inventory = Inventory::find($id);
+
+        if (!$inventory) {
+            return redirect()->route('inventory.mostrar')->with('error', 'Producto no encontrada');
+        }
+
+        $inventory->status = 0;
+        $inventory->save();
+
+        return redirect()->route('inventory.mostrar')->with('success', 'Se elimino el producto de manera exitosa');
+    }
+
 }

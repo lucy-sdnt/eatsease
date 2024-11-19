@@ -63,4 +63,17 @@ class Suppliers_controller extends Controller
 
         return redirect()->route('suppliers.mostrar')->with('success', 'Proveedor actualizado exitosamente');
     }
+    public function delete($id)
+    {
+        $supplier = Suppliers::find($id);
+
+        if (!$supplier) {
+            return redirect()->route('suppliers.mostrar')->with('error', 'Proveedor no encontrado');
+        }
+
+        $supplier->status = 0;
+        $supplier->save();
+
+        return redirect()->route('suppliers.mostrar')->with('success', 'Se elimino el proveedor de manera exitosa');
+    }
 }

@@ -55,4 +55,17 @@ class Tables_controller extends Controller
 
     return redirect()->route('tables.mostrar')->with('success', 'Mesa actualizada exitosamente');
     }
+    public function delete($id)
+    {
+        $table = Tables::find($id);
+
+        if (!$table) {
+            return redirect()->route('tables.mostrar')->with('error', 'Mesa no encontrada');
+        }
+
+        $table->status = 0;
+        $table->save();
+
+        return redirect()->route('tables.mostrar')->with('success', 'Se elimino la mesa de manera exitosa');
+    }
 }

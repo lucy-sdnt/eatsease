@@ -52,4 +52,18 @@ class Payment_controller extends Controller
 
         return redirect()->route('payment.mostrar')->with('success', 'Método de pago actualizado exitosamente');
     }
+
+    public function delete($id)
+    {
+        $payment = Payment::find($id);
+
+        if (!$payment) {
+            return redirect()->route('payment.mostrar')->with('error', 'Método de pago no encontrado');
+        }
+
+        $payment->status = 0;
+        $payment->save();
+
+        return redirect()->route('payment.mostrar')->with('success', 'Se elimino el método de pago de manera exitosa');
+    }
 }

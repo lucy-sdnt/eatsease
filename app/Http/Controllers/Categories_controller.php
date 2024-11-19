@@ -51,6 +51,19 @@ public function update(Request $request, $id)
     return redirect()->route('categories.mostrar')->with('success', 'Categoría actualizada exitosamente');
     }
 
+    public function delete($id)
+    {
+        $category = Categories::find($id);
+
+        if (!$category) {
+            return redirect()->route('categories.mostrar')->with('error', 'Categoría no encontrada');
+        }
+
+        $category->status = 0;
+        $category->save();
+
+        return redirect()->route('categories.mostrar')->with('success', 'Categoría desactivada exitosamente');
+    }
     
 }
 

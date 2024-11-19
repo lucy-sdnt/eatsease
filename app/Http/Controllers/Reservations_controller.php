@@ -69,4 +69,18 @@ class Reservations_controller extends Controller
 
         return redirect()->route('reservations.mostrar')->with('success', 'Reservación actualizada exitosamente');
     }
+
+    public function delete($id)
+    {
+        $reservation = Reservations::find($id);
+
+        if (!$reservation) {
+            return redirect()->route('reservations.mostrar')->with('error', 'Reservación no encontrada');
+        }
+
+        $reservation->status = 0;
+        $reservation->save();
+
+        return redirect()->route('reservations.mostrar')->with('success', 'Se elimino la reservación de manera exitosa');
+    }
 }

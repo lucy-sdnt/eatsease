@@ -58,6 +58,18 @@ class Items_controller extends Controller
 
     return redirect()->route('items.mostrar')->with('success', 'Item actualizado correctamente');
     }
+    public function delete($id)
+    {
+        $item = Items::find($id);
 
+        if (!$item) {
+            return redirect()->route('items.mostrar')->with('error', 'Producto no encontrado');
+        }
+
+        $item->status = 0;
+        $item->save();
+
+        return redirect()->route('items.mostrar')->with('success', 'Se elimino el producto de manera exitosa');
+    }
 
 }

@@ -67,6 +67,19 @@ class Orders_controller extends Controller
     
         return redirect()->route('orders.mostrar')->with('success', 'Orden actualizada correctamente');
     }
-    
+
+    public function delete($id)
+    {
+        $order = Orders::find($id);
+
+        if (!$order) {
+            return redirect()->route('orders.mostrar')->with('error', 'Orden no encontrada');
+        }
+
+        $order->status = 0;
+        $order->save();
+
+        return redirect()->route('orders.mostrar')->with('success', 'Se elimino la orden de manera exitosa');
+    }
 
 }

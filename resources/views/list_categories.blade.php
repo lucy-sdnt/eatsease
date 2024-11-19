@@ -68,6 +68,58 @@
             height: 20px;
             fill: #fff;
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .overlay .icon {
+            font-size: 100px;
+            color: white;
+            animation: bounce 1.5s ease infinite;
+        }
+        .overlay.success .icon {
+            color: #28a745; 
+        }
+        .overlay.error .icon {
+            color: #dc3545; 
+        }
+        .overlay .message {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold; 
+        color: #00ff00; 
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    }
+    .overlay.success .message {
+        color: #00ff00; 
+    }
+    .overlay.error .message {
+        color: #ff3333; 
+    }
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
     </style>
 </head>
 <body>
@@ -84,22 +136,59 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_categories as $dato)
+            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->name_c}}</td>
                 <td class="action-btns">
                     <a href="{{ url('/edit_categories/' . $dato->id) }}" class="text-primary" title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="/delete_categoires/' . {{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+                    <a href="{{ url('/delete_categories/' . $dato->id) }}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
             </tr>
+            @endif
             @endforeach
         </table>
     </div>
+    
+    <div id="notification-overlay" class="overlay">
+        <i class="icon"></i>
+        <div class="message"></div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function showNotification(type, message) {
+            const overlay = document.getElementById('notification-overlay');
+            const icon = overlay.querySelector('.icon');
+            const text = overlay.querySelector('.message');
+            overlay.classList.remove('success', 'error');
+            if (type === 'success') {
+                overlay.classList.add('success');
+                icon.classList.add('fas', 'fa-check-circle');
+                icon.classList.remove('fa-times-circle');
+                text.textContent = message || "Se eliminó la categoría de forma exitosa.";
+            } else {
+                overlay.classList.add('error');
+                icon.classList.add('fas', 'fa-times-circle');
+                icon.classList.remove('fa-check-circle');
+                text.textContent = message || "Ocurrió un error al eliminar la categoría.";
+            }
+            overlay.classList.add('show');
+            setTimeout(() => {
+                overlay.classList.remove('show');
+            }, 2000); 
+        }
+        @if (session('success'))
+            showNotification('success', '{{ session('success') }}');
+        @elseif (session('error'))
+            showNotification('error', '{{ session('error') }}');
+        @endif
+    </script>
 </body>
 </html>

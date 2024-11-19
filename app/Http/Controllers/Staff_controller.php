@@ -64,4 +64,18 @@ class Staff_controller extends Controller
 
         return redirect()->route('staff.mostrar')->with('success', 'Empleado actualizado exitosamente');
     }
+
+    public function delete($id)
+    {
+        $staff = Staff::find($id);
+
+        if (!$staff) {
+            return redirect()->route('staff.mostrar')->with('error', 'Empleado no encontrada');
+        }
+
+        $staff->status = 0;
+        $staff->save();
+
+        return redirect()->route('staff.mostrar')->with('success', 'Se elimino el empleado de manera exitosa');
+    }
 }
