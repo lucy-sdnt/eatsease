@@ -7,6 +7,7 @@
     <title>Contenidos de Orden</title>
     <link href="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" rel="icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -42,36 +43,45 @@
             background-color: #343a40;
             color: #ffffff;
         }
+
         a[href="/formularioProductos"]:hover {
-        background-color: #f25a08;
+            background-color: #f25a08;
         }
         
-		.home-link {
-           position: fixed;
-           top: 15px;
-           right: 1165px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           width: 40px;
-           height: 40px;
-           border-radius: 50%;
-           background-color: #333;
-           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-           z-index: 999;
-           }
-           .home-link img {
-               width: 20px;
-               height: 20px;
-               fill: #fff;
-           }
+        .home-link {
+            position: fixed;
+            top: 15px;
+            right: 1165px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .home-link img {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
 
+        .action-btns a {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .action-btns a:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
-
-	<a href="/" class="home-link"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" alt="Home"></a>
+    <a href="/" class="home-link"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" alt="Home"></a>
 
     <div class="container">
         <h2>Productos</h2>
@@ -83,6 +93,7 @@
                 <th>Instrucciónes especiales</th>
                 <th>Fecha</th>
                 <th>Producto</th>
+                <th>Acciones</th> 
             </tr>
             @foreach ($datos_items as $dato)
             <tr>
@@ -90,10 +101,19 @@
                 <td>{{$dato->special_instructions}}</td>
                 <td>{{$dato->date_ord}}</td>
                 <td>{{$dato->name_m}}</td>
+                <td class="action-btns">
+                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
             </tr>
             @endforeach
         </table>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

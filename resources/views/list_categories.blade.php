@@ -7,6 +7,7 @@
     <title>Categorias de menú</title>
     <link href="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" rel="icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -42,36 +43,35 @@
             background-color: #343a40;
             color: #ffffff;
         }
+        
         a[href="/formularioCategorias"]:hover {
-        background-color: #f25a08;
+            background-color: #f25a08;
         }
         
-		.home-link {
-           position: fixed;
-           top: 15px;
-           right: 1165px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           width: 40px;
-           height: 40px;
-           border-radius: 50%;
-           background-color: #333;
-           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-           z-index: 999;
-           }
-           .home-link img {
-               width: 20px;
-               height: 20px;
-               fill: #fff;
-           }
-
+        .home-link {
+            position: fixed;
+            top: 15px;
+            right: 1165px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .home-link img {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
     </style>
 </head>
 <body>
-
-
-	<a href="/" class="home-link"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" alt="Home"></a>
+    <a href="/" class="home-link"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1fa78.png" alt="Home"></a>
 
     <div class="container">
         <h2>Categorias de menú</h2>
@@ -81,10 +81,19 @@
         <table>
             <tr>
                 <th>Nombre de categoria</th>
+                <th>Acciones</th>
             </tr>
             @foreach ($datos_categories as $dato)
             <tr>
                 <td>{{$dato->name_c}}</td>
+                <td class="action-btns">
+                    <a href="/edit/{{$dato->id}}" class="text-primary" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/delete/{{$dato->id}}" class="text-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
             </tr>
             @endforeach
         </table>

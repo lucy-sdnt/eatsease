@@ -80,6 +80,10 @@ Route::get("/listadoProductos",[Items_controller::class,"mostrar"])->name("items
 
 Route::post("/registroMenu",[Menu_controller::class,"insertar"])->name("menu.insertar");
 Route::get("/listadoMenu",[Menu_controller::class,"mostrar"])->name("menu.mostrar");
+Route::get('/delete/{id}', [Menu_controller::class, 'destroy'])->name('menu.destroy');
+Route::get('/edit/{id}', [Menu_controller::class, 'edit'])->name('menu.edit');
+Route::post('/update/{id}', [Menu_controller::class, 'update'])->name('menu.update');
+
 
 Route::post("/registroOrdenes",[Orders_controller::class,"insertar"])->name("orders.insertar");
 Route::get("/listadoOrdenes",[Orders_controller::class,"mostrar"])->name("orders.mostrar");
