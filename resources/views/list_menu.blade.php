@@ -143,7 +143,6 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_menu as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->name_m}}</td>
                 <td>{{$dato->description}}</td>
@@ -158,7 +157,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

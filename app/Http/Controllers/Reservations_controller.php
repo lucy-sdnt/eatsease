@@ -27,10 +27,11 @@ class Reservations_controller extends Controller
     {
         $datos_reservations = Reservations::join('tables', 'reservations.table_id', '=', 'tables.id')
             ->select('reservations.*', 'tables.table_number')
+            ->where('reservations.status', 1)
             ->get();
-
         return view("list_reservations", compact("datos_reservations"));
     }
+    
 
     public function edit($id)
     {

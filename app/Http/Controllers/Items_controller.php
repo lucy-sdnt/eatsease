@@ -23,13 +23,15 @@ class Items_controller extends Controller
         //return view("lista_nota");
         return redirect()->route("items.mostrar");
     }
-    function mostrar(){
-        $datos_items=Items::select('items.id','items.quantity_it','items.special_instructions','orders.date_ord','menu.name_m')
-        ->join("orders","items.order_id","=","orders.id")
-        ->join("menu","items.menu_id","=","menu.id")
-        ->get();
+    function mostrar() {
+        $datos_items = Items::select('items.id', 'items.quantity_it', 'items.special_instructions', 'orders.date_ord', 'menu.name_m')
+            ->join("orders", "items.order_id", "=", "orders.id")
+            ->join("menu", "items.menu_id", "=", "menu.id")
+            ->where('items.status', 1) 
+            ->get();
         return view("list_items", compact("datos_items"));
     }
+    
 
     public function edit($id)
     {

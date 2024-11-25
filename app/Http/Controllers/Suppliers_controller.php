@@ -23,7 +23,7 @@ class Suppliers_controller extends Controller
 
     public function mostrar()
     {
-        $datos_suppliers = Suppliers::all();
+        $datos_suppliers = Suppliers::where('status', 1)->get();
         return view("list_suppliers", compact("datos_suppliers"));
     }
 

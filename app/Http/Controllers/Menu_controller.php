@@ -22,10 +22,13 @@ class Menu_controller extends Controller
         //return view("lista_nota");
         return redirect()->route("menu.mostrar");
     }
-    function mostrar(){
-        $datos_menu=Menu::join("categories","menu.category_id","=","categories.id")->get();
+    function mostrar() {
+        $datos_menu = Menu::join("categories", "menu.category_id", "=", "categories.id")
+            ->where('menu.status', 1)
+            ->get();
         return view("list_menu", compact("datos_menu"));
     }
+    
 
     public function edit($id)
     {

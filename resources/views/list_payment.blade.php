@@ -143,7 +143,6 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_payment as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->pay_type}}</td>
                 <td class="action-btns">
@@ -155,7 +154,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

@@ -147,7 +147,6 @@
                 <th>Acciones</th> 
             </tr>
             @foreach ($datos_inventory as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->name_in}}</td>
                 <td>{{$dato->quantity_in}}</td>
@@ -162,7 +161,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

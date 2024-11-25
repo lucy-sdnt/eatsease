@@ -42,7 +42,7 @@ class Orders_controller extends Controller
         $order = Orders::with('tables')->findOrFail($id); // Carga la relación con tables
         $staff = Staff::all();
         $paymentTypes = Payment::all();
-        $tables = Tables::all(); // Para mostrar las opciones de mesas en el formulario
+        $tables = Tables::all(); 
         return view('edit_orders', compact('order', 'staff', 'paymentTypes', 'tables'));
     }
     
@@ -52,7 +52,7 @@ class Orders_controller extends Controller
     {
         $request->validate([
             'date_ord' => 'required|date',
-            'table_id' => 'required|exists:tables,id', // Valida que exista en la tabla tables
+            'table_id' => 'required|exists:tables,id',
             'staff_id' => 'required|exists:staff,id', 
             'payment_id' => 'required|exists:payment,id', 
         ]);

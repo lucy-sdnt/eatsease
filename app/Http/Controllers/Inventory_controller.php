@@ -22,11 +22,14 @@ class Inventory_controller extends Controller
 
     public function mostrar()
     {
-        $datos_inventory = Inventory::select('inventory.id', 'inventory.name_in', 'inventory.quantity_in', 'inventory.unit', 'suppliers.name_s')
-            ->join("suppliers", "inventory.supplier_id", "=", "suppliers.id")
-            ->get();
-        return view("list_inventory", compact("datos_inventory"));
-    }
+    $datos_inventory = Inventory::select('inventory.id', 'inventory.name_in', 'inventory.quantity_in', 'inventory.unit', 'suppliers.name_s')
+        ->join("suppliers", "inventory.supplier_id", "=", "suppliers.id")
+        ->where('inventory.status', 1)
+        ->get();
+
+    return view("list_inventory", compact("datos_inventory"));
+    }   
+
 
     public function edit($id)
     {

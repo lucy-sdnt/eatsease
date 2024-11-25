@@ -167,7 +167,6 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_suppliers as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->name_s}}</td>
                 <td>{{$dato->contact}}</td>
@@ -183,7 +182,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

@@ -17,7 +17,7 @@ class Categories_controller extends Controller
     }
 
     function mostrar(){
-        $datos_categories=Categories::all();
+        $datos_categories = Categories::where('status', 1)->get();
         return view("list_categories", compact("datos_categories"));
     }
 

@@ -22,7 +22,7 @@ class Staff_controller extends Controller
     }
 
     function mostrar(){
-        $datos_staff=Staff::all();
+        $datos_staff=Staff::where('status', 1)->get();
         return view("list_staff", compact("datos_staff"));
     }
 

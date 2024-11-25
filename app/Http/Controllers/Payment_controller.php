@@ -18,7 +18,7 @@ class Payment_controller extends Controller
     }
 
     function mostrar(){
-        $datos_payment=Payment::all();
+        $datos_payment=Payment::where('status', 1)->get();
         return view("list_payment", compact("datos_payment"));
     }
 

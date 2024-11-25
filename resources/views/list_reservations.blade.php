@@ -146,7 +146,6 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_reservations as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->customer_name}}</td>
                 <td>{{$dato->customer_phone}}</td>
@@ -161,7 +160,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

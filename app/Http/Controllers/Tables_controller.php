@@ -19,7 +19,7 @@ class Tables_controller extends Controller
     }
 
     function mostrar(){
-        $datos_tables=Tables::all();
+        $datos_tables=Tables::where('status', 1)->get();
         return view("list_tables", compact("datos_tables"));
     }
 

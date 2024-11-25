@@ -138,7 +138,7 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_orders as $dato)
-            @if ($dato->status == 1)
+            @if ($dato->status == 0)
             <tr>
                 <td>{{$dato->date_ord}}</td>
                 <td>{{$dato->table_number}}</td>

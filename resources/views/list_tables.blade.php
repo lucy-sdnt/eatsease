@@ -160,8 +160,7 @@
                 <th>Capacidad</th>
                 <th>Acciones</th>
             </tr>
-            @foreach ($datos_tables as $dato)
-            @if ($dato->status == 1)    
+            @foreach ($datos_tables as $dato)  
             <tr>
                 <td>{{$dato->table_number}}</td>
                 <td>{{$dato->capacity}}</td>
@@ -174,7 +173,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>

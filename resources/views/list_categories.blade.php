@@ -136,7 +136,6 @@
                 <th>Acciones</th>
             </tr>
             @foreach ($datos_categories as $dato)
-            @if ($dato->status == 1)
             <tr>
                 <td>{{$dato->name_c}}</td>
                 <td class="action-btns">
@@ -148,7 +147,6 @@
                     </a>
                 </td>
             </tr>
-            @endif
             @endforeach
         </table>
     </div>
